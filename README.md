@@ -4,7 +4,7 @@ Returns a ref with a `current` value of true when a component is mounted.
 ## Motivation
 Useful when working with server side rendering. Comparable to `componentDidMount` in a class-based component. Does __not__ trigger a rerender.
 
-Use it to check if a component is still mounted after calling an async function.
+Another use-case is to check if a component is still mounted after calling an async function.
 
 ## Installation
 
