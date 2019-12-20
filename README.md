@@ -26,7 +26,7 @@ function Component() {
     () => {
       async function doSomethingAync() {
         await someAsyncFunction()
-        if (isMountedRef.current) { console.log('I\m still mounted!') }
+        if (isMountedRef.current) { console.log('I\'m still mounted!') }
       }
       doSomethingAync()
     },

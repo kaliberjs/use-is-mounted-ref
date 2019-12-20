@@ -8,12 +8,16 @@ export default function App() {
   React.useEffect(
     () => {
       async function doSomethingAync() {
-        await someAsyncFunction()
-        if (isMountedRef.current) { console.log('I\m still mounted!') }
+        try {
+          await someAsyncFunction()
+        } catch (err) {
+          console.error(err)
+        }
+        if (isMountedRef.current) { console.log('I\'m still mounted!') }
       }
       doSomethingAync()
     },
-    []
+    [isMountedRef]
   )
 
   // Or use it to see if a component is mounted, a functional equivalent of `componentDidMount`
@@ -26,8 +30,8 @@ export default function App() {
       }
     </>
   )
+}
 
-  function someAsyncFunction() {
-    return new Promise(resolve => { window.setTimeout(resolve, 1000) })
-  }
+function someAsyncFunction() {
+  return new Promise(resolve => { window.setTimeout(resolve, 1000) })
 }
