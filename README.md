@@ -14,7 +14,7 @@ yarn add @kaliber/use-is-mounted-ref
 ```jsx
 import { useIsMountedRef } from '@kaliber/use-is-mounted-ref'
 
-export default function App() {
+function Component() {
   const [, setMounted] = React.useState(false)
   const isMounted = useIsMountedRef()
 
@@ -33,6 +33,6 @@ export default function App() {
 ![](https://media.giphy.com/media/9SgOeNxFAh8Hu/giphy.gif)
 
 ## Disclaimer
-This library is intended for internal use, we provide __no__ support, use at your own risk.
+This library is intended for internal use, we provide __no__ support, use at your own risk. It does not import React, but expects it to be provided, which [@kaliber/build](https://kaliberjs.github.io/build/) can handle for you.
 
 This library is not transpiled.
