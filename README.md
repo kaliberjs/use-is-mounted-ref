@@ -17,7 +17,7 @@ yarn add @kaliber/use-is-mounted-ref
 import { useIsMountedRef } from '@kaliber/use-is-mounted-ref'
 
 function Component() {
-  const [, set] = React.useState(false)
+  const [state, setState] = React.useState('⬇️')
   const isMountedRef = useIsMountedRef()
 
   // Use it to check if a component is still mounted after calling an async function.
@@ -28,22 +28,18 @@ function Component() {
           await someAsyncFunction()
         } catch (err) {
           console.error(err)
+          if (isMountedRef.current) setState('⚠️')
         }
-        if (isMountedRef.current) { console.log('I\'m still mounted!') }
+        if (isMountedRef.current) setState('⬆️')
       }
       doSomethingAync()
     },
     [isMountedRef]
   )
 
-  // Or use it to see if a component is mounted, a functional equivalent of `componentDidMount`
   return (
     <>
-      <div style={{ fontSize: '5em' }}>{isMountedRef.current ? '⬆️' : '⬇️'}</div>
-      {!isMountedRef.current
-        // calling set with a new value triggers a rerender
-        && <button onClick={() => set(true)}>Mount</button>
-      }
+      <div style={{ fontSize: '5em' }}>{state}</div>
     </>
   )
 }
@@ -51,7 +47,6 @@ function Component() {
 function someAsyncFunction() {
   return new Promise(resolve => { window.setTimeout(resolve, 1000) })
 }
-
 ```
 
 ![](https://media.giphy.com/media/9SgOeNxFAh8Hu/giphy.gif)
